@@ -31,12 +31,29 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # accounts from created applications should define in top
+    'accounts',
+    
+    # Django Embedded Applications
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # Installed Applications
+    'bootstrap4',
+    'django_filters',
+    
+    # django rest_framework
+    'rest_framework',
+    
+    # Created Applications
+    'product',
+    'blog',
+    'main_info',
+
 ]
 
 MIDDLEWARE = [
