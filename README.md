@@ -1,10 +1,9 @@
 # Ecommerce Store
-<hr>
-# # Python 3.11.2
-<hr>
-# # Django 4.2
-<hr>
-# # # How to git project (windows user) :
+## Python 3.11.2
+
+## Django 4.2
+
+### How to git project (windows user) :
  - first 'git clone' this repo in your pc .
  - open CMD in the (repo) folder .
  - py -m venv venv
@@ -13,9 +12,9 @@
  - cd source
  - pip install -r requirements.txt
  - py manage.py runserver
-<hr>
 
-# # # How to git project (linux distributions users) :
+
+### How to git project (linux distributions users) :
  - first 'git clone' this repo in your pc .
  - open terminal in the (repo) folder
  - python3 -m venv venv
@@ -24,11 +23,11 @@
  - cd source
  - pip install -r requirements.txt
  - py manage.py runserver
-<hr>
-# # Folder structure :
+
+## Folder structure :
 ![Screenshot from 2023-04-30 04-28-48](https://user-images.githubusercontent.com/75578565/235332727-58e9cf5b-6fc2-4f30-a75d-f88c8ecc77c9.png)
-<hr>
-# # Additional info :
+
+## Additional info :
 ***for any django project to get django base files path in your PC:***
  - you should active your venv
  - run this command : python3 -c "import django; print(django.path)"
