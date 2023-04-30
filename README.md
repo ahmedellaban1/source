@@ -8,8 +8,8 @@
  - open CMD in the (repo) folder .
  - py -m venv venv
  - venv\Scripts\activate
-![image](https://user-images.githubusercontent.com/75578565/235332534-ebe73f0c-9523-4fcf-ac18-729c9f926fed.png)
-<br>
+<br>![image](https://user-images.githubusercontent.com/75578565/235332534-ebe73f0c-9523-4fcf-ac18-729c9f926fed.png)
+
  - cd source
  - pip install -r requirements.txt
  - py manage.py runserver
@@ -20,8 +20,7 @@
  - open terminal in the (repo) folder
  - python3 -m venv venv
  - source venv/bin/activate
-![Screenshot from 2023-04-30 04-25-47](https://user-images.githubusercontent.com/75578565/235332655-67cb040b-8d71-4181-a564-9be695fe35b8.png)
-<br>
+<br>![Screenshot from 2023-04-30 04-25-47](https://user-images.githubusercontent.com/75578565/235332655-67cb040b-8d71-4181-a564-9be695fe35b8.png)
  - cd source
  - pip install -r requirements.txt
  - py manage.py runserver
