@@ -1,4 +1,6 @@
 # Ecommerce Store
+ERD https://drawsql.app/teams/cis-9/diagrams/e-commerce/embed
+
 ## Python 3.11.2
 
 ## Django 4.2
