@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 from rules.choices_tuples import (
     SIZE_TUPLE,
 )
@@ -28,8 +29,14 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=7, decimal_places=2)
     color = models.CharField(max_length=7, null=False, blank=False)
     size = models.CharField(max_length=3, choices=SIZE_TUPLE, default=SIZE_TUPLE[0][0])
-    slug = models.SlugField() # TODO: slugify title and description[:20]
+    slug = models.SlugField(null=True, blank=True)
     category_id = models.ForeignKey('Category', null=False, blank=False, on_delete=models.DO_NOTHING)
+
+    def save(self, *args, **kwargs):
+        self.slug = ''
+        text = f'{self.category_id.title} {self.title} {self.description[:20]} {self.id}'
+        self.slug = slugify(text)
+        super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
         return f'id = {self.id}, title = {self.title}, description = {self.description[:20]}...'
