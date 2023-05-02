@@ -1,5 +1,6 @@
 from django.urls import path, include
+from .views import signup_view
 
 urlpatterns = [
-    # path('', ),
+    path('register/', signup_view, name='sign-up'),
 ]
