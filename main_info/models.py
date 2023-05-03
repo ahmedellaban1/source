@@ -2,9 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 from product.models import Product
 from rules.choices_tuples import (
-    STATUS_TUPLE
+    STATUS_TUPLE,
 )
-# TODO: RegexValidator 
+from rules.numbers_validators import (
+    ZIP_CODE_VALIDATOR,
+)
+
 # Create your models here.
 
 class Order(models.Model):
@@ -25,7 +28,7 @@ class Billing(models.Model):
     user_id = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=60, null=False, blank=False)
     address = models.CharField(max_length=120, null=False, blank=False)
-    ZIP_code = models.CharField(max_length=5,null=False, blank=False)
+    ZIP_code = models.CharField(max_length=5,null=False, blank=False, validators=[ZIP_CODE_VALIDATOR, ])
     card_number = models.IntegerField(null=False, blank=False)
     card_expiry = models.DateField(null=False, blank=False)
     card_CVC = models.CharField(max_length=20, null=False, blank=False)
