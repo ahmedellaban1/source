@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 from rules.choices_tuples import SIZE_TUPLE
-from rules.file_uploder import image_uploder
+from rules.file_uploader import image_uploader
 from rules.text_validators import REVIEW_PATTERN, PRODUCT_DESCRIPTION
 from rules.numbers_validators import COLOR_HEXA_VALIDATOR
 
@@ -43,7 +43,7 @@ class Product(models.Model):
 class ProductImage(models.Model):
     id = models.AutoField(primary_key=True, null=False, blank=False)
     product_id = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=image_uploder(class_name='product'), null=False, blank=False)
+    image = models.ImageField(upload_to=image_uploader(class_name='product'), null=False, blank=False)
 
     def __str__(self):
         return f'id = {self.id}, product = {self.product_id.title}'

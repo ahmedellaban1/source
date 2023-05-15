@@ -7,7 +7,7 @@ min_value = 10 ** (number_digit - 1)
 max_value = (10 ** number_digit) - 1
 
 
-def image_uploder(class_name):
+def image_uploader(class_name):
     global wrapper
     def wrapper(instance, filename):
         name , extension = filename.split('.')
