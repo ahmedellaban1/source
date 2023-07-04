@@ -1,0 +1,14 @@
+{% extends 'base_register.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% block container %}
+    <h2 class="text-center">Verfy Your Email</h2>
+    <form method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button class="btn btn-main text-center" type="submit">Submit</button>
+    {% endbuttons %}
+    </form>
+    <p><a href=""> Don't get any code?</a></p>
+{% endblock %}
