@@ -1,0 +1,26 @@
+{% extends 'base_register.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% block container %}
+    {% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+    {% if next %}
+    {% if user.is_authenticated %}
+      <p>Your account doesn't have access to this page. To proceed,
+      please login with an account that has access.</p>
+    {% else %}
+      <p>Please login to see this page.</p>
+    {% endif %}
+    {% endif %}
+                <h2 class="text-center">Welcome Back</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    {% buttons %}
+                    <button class="btn btn-main text-center" type="submit">Login</button>
+                    {% endbuttons %}
+                </form>
+                <p class="mt-20">New in this site ?<a href="{% url 'sign-up' %}"> Create New Account</a></p>
+  
+{% endblock %}

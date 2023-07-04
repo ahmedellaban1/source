@@ -2,6 +2,13 @@ from django import forms
 from django.contrib.auth.models import User
 
 
+def fields_rename(fields):
+    for i in fields:
+        fields[i].widget.attrs['placeholder']  = fields[i].label
+        fields[i].label = ''
+        fields[i].help_text = ''
+
+
 class SignUpForm(forms.ModelForm):
     class Meta:
         model = User
@@ -9,8 +16,15 @@ class SignUpForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        for i in self.fields:
-            self.fields[i].widget.attrs['placeholder']  = self.fields[i].label
-            self.fields[i].label = ''
-            self.fields[i].help_text = ''
+        fields_rename(self.fields)
+
+
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', 'password')
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        fields_rename(self.fields)
 
