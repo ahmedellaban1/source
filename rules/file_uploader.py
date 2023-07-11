@@ -14,6 +14,7 @@ def image_uploader(class_name):
         random_number = random.randint(min_value, max_value)
         today = date.today()
         formatted_date = today.strftime("%m-%Y")
-        return f'{class_name}_images/{formatted_date}/{instance.id}_{random_number}_{instance.user_id.username}.{extension}'
+        return f'{class_name}_images/{formatted_date}/{instance.id}_{random_number}.{extension}'
     return wrapper
 
+# {instance.user_id.username}

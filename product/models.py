@@ -29,7 +29,7 @@ class Product(models.Model):
     size = models.CharField(max_length=3, choices=SIZE_TUPLE, default=SIZE_TUPLE[0][0])
     slug = models.SlugField(null=True, blank=True)
     category_id = models.ForeignKey('Category', null=False, blank=False, on_delete=models.DO_NOTHING)
-
+    image = models.ImageField(upload_to=image_uploader(class_name='product'), null=False, blank=False)
     def save(self, *args, **kwargs):
         self.slug = ''
         text = f'{self.category_id.title} {self.title} {self.description[:20]} {self.id}'

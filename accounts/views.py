@@ -1,64 +1,47 @@
 from django.shortcuts import render, redirect, reverse
-from .forms import (
-    SignUpForm,
-    LoginForm,
-    VerificationCode,
-    User
-)
-from rules.validator_functions import verification_code
-# Create your views here.
-# TODO: each function must have app_name variable sent in context cause it appear in title
-
+from .forms import SignUpForm, LoginForm,VerificationCode
+from .models import Profile
+# from rules.validator_functions import verification_code, verify_email
+from django.contrib.auth import authenticate
 
 
 def signup_view(request):
     form = SignUpForm(request.POST)
     if form.is_valid():
-        form.save(commit=False)
-        form.is_active = False
-        email = form.data['email']
         form.save()
-        return True
-        # return redirect(reverse('accounts:email_verification',kwargs={'email':email} ))
+        return redirect(reverse('accounts:login'))
     else:
         form = SignUpForm()
-
     context = {
         'form': form,
         'app_name': 'SignUp',
     }
-    return render(request, 'register/signup.html', context=context)
+    return render(request, 'registration/signup.html', context=context)
 
 
-# def email_verification(request,email):
-#     user = User.objects.get(email=email)
-#     code = verification_code(email)
-#     form = VerificationCode(request.POST)
-#     print(form.data['code'])
+def email_verification(request):
+    code_form = VerificationCode(request.POST)
+    if code_form.is_valid():
+        return redirect(reverse('accounts:login'))
+    else:
+        code_form = VerificationCode()
+    context = {
+        "form": code_form,
+        "app_name": 'register | validate your email'
+    }
+    return render(request, 'registration/verification_code.html', context=context)
+
+
+
+# def login_view(request):
+#     form = LoginForm(request.POST)
 #     if form.is_valid():
-#         if form.data['code'] == code:
-#             print(f"code- form = {form.data['code']} ----- {code}")
-#             user.objects.update(is_active=True)
-#             return redirect(reverse('accounts:login'))
+#         authenticate(username=form.data['username'], password=form.data['password'])
+#         return redirect(reverse('accounts:login'))
 #     else:
-#         form = VerificationCode()
-
+#         form = LoginForm()
 #     context = {
 #         'form': form,
-#         'app_name': 'Verification Code',
+#         'app_name': 'Login',
 #     }
-
-#     return render(request, 'register/verification_code.html', context=context)
-
-
-def login_view(request):
-    form = LoginForm(request.POST)
-    if form.is_valid():
-        return True  #TODO: this must redirect user to home page
-    else:
-        form = LoginForm()
-    context = {
-        'form': form,
-        'app_name': 'Login',
-    }
-    return render(request, 'register/login.html', context=context)
+#     return render(request, 'registration/login.html', context=context)

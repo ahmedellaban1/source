@@ -19,6 +19,8 @@ class Profile(models.Model):
     )
     date_of_birth = models.DateField(blank=True, null=True)
     slug = models.SlugField(null=True, blank=True)
+    verified = models.BooleanField(default=False)
+    code = models.CharField(max_length=6, blank=True, null=True, default='') 
 
     def save(self, *args, **kwargs):
         self.slug = ''
